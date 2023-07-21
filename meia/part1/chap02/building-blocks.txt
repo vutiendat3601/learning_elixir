@@ -1,0 +1,58 @@
+- Interactive shell:
+$ iex
+$ 1 + 1
+$ 2 * (
+    3 + 1
+  ) / 4
+$ 1 + 2; 1 + 3
+
+- Working with variables:
+iex> monthly_salary = 10000
+iex> monthly_salary
+iex> monthly_salary * 12
+iex> monthly_salary = 11000
+iex> IO.puts("Hello World!")
+iex> iex geometry.ex
+iex> Geometry.retangle_area(6,7)
+iex> -5 |> abs |> Integer.to_string |> IO.puts
+iex> IO.puts(Integer.to_string(abs(-5)))
+==============================================================
+- Type system
+  Integer:
+iex> 3
+  Integer written in HEX:
+iex> 0xFF
+  Float:
+iex> 3.14
+  Float, exponential notation
+iex> 1.0e-2
+  Standard arithmetic operators are supported:
+iex> 1 + 2 * 3
+
+iex> div(5,2)
+iex> rem(5,2)
+iex> 1_000_000
+  Atoms(literal named constants):
+iex> :an_atom
+iex> "an atom with spaces"
+iex> AnAtom
+iex> true
+iex> false
+iex> nil
+===============================================
+- Tuples (fixed number untyped structure):
+iex> me = {"Dat Vu", 22}
+iex> name = elem(me, 0)
+iex> age = elem(me, 1)
+iex> put_elem(me, 1, 23)
+===============================================
+- Lists (variable-sized collections of data, singly linked lists):
+iex> prime_nums = [1, 2, 3, 5, 7]
+iex> length(prime_nums)
+iex> Enum.at(prime_nums, 0)
+iex> 5 in prime_nums
+iex> 4 in prime_nums
+iex> List.replace_at(prime_nums, 0, 11)
+iex> List.insert_at(prime_nums, 4, 1)
+iex> List.insert_at(prime_nums, -1, 1)
+iex> [1,2,3] ++ [4,5]
