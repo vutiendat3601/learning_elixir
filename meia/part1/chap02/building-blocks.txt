@@ -16,7 +16,7 @@ iex> iex geometry.ex
 iex> Geometry.retangle_area(6,7)
 iex> -5 |> abs |> Integer.to_string |> IO.puts
 iex> IO.puts(Integer.to_string(abs(-5)))
-==============================================================
+================================================================================
 - Type system
   Integer:
 iex> 3
@@ -39,13 +39,13 @@ iex> AnAtom
 iex> true
 iex> false
 iex> nil
-===============================================
+================================================================================
 - Tuples (fixed number untyped structure):
 iex> me = {"Dat Vu", 22}
 iex> name = elem(me, 0)
 iex> age = elem(me, 1)
 iex> put_elem(me, 1, 23)
-===============================================
+================================================================================
 - Lists (variable-sized collections of data, singly linked lists):
 iex> prime_nums = [1, 2, 3, 5, 7]
 iex> length(prime_nums)
@@ -56,3 +56,56 @@ iex> List.replace_at(prime_nums, 0, 11)
 iex> List.insert_at(prime_nums, 4, 1)
 iex> List.insert_at(prime_nums, -1, 1)
 iex> [1,2,3] ++ [4,5]
+iex> [1 | []]
+iex> [1 | [2 | []]]
+iex> [1 | [2, 3, 4]]
+iex> hd([1, 2, 3, 4])
+iex> tl([1, 2, 3, 4])
+iex> [11 | prime_nums]
+================================================================================
+- Maps (key-value store):
+iex> dat_vu = %{:name => "Vu Tien Dat", :phone => "0898993601", :email => "vutien.dat.3601@gmail.com"}
+iex> dat_vu = %{name: "Vu Tien Dat", phone: "0898993601", email: "vutien.dat.3601@gmail.com"}
+iex> dat_vu.name
+iex> dat_vu[:name]
+iex> dat_vu = %{"name" => "Vu Tien Dat", "phone" => "0898993601", "email" => "vutien.dat.3601@gmail.com"}
+iex> dat_vu["name"]
+iex> dat_vu = %{name: "Vu Tien Dat", phone: "0898993601", email: "vutien.dat.3601@gmail.com"}
+iex> dat_vu = %{dat_vu | :phone => "0388093601"}
+iex> Map.put(dat_vu, :birthday, "2001-06-03")
+================================================================================
+- Strings (binary string):
+iex> "This is a string"
+iex> "Embedded expression: #{3 + 0.14}"
+iex> "\r \n \" \\"
+iex> "
+      This is
+      a multiline string
+     "
+iex> ~s(This is also a string)
+iex> ~s(Not interpolated #{3 + 0.14})
+iex> ~S(Not interpolated #{3 + 0.14})
+iex> "String" <> " " <> "concatenation"
+- Character lists:
+iex> 'ABC'
+iex> ~c"ABC"
+iex> ~c(Character list sigil)
+iex> ~C(Unescaped sigil #{3 + 0.14})
+iex> String.to_charlist("ABC")
+================================================================================
+- First-class function:
+iex> square = fn(x) -> x * x end
+iex> square.(5)
+iex> print_element = fn(x) -> IO.puts(x) end
+iex> Enum.each([1, 2, 3], print_element)
+iex> Enum.each([1, 2, 3], &IO.puts/1)
+iex> lambda = &(&0 * &1 + &2)
+iex> lambda.(2, 3, 4)
+- Closure
+iex> outside_var = 5
+iex> lambda = fn -> IO.puts(outside_var) end
+iex> lambda.()
+iex> outside_var = 6
+iex> lambda.()
+================================================================================
+
