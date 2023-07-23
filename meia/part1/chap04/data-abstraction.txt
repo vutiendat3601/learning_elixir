@@ -4,4 +4,15 @@
     first argument.
   + Modifier functions return a modified version of the abstraction.
   + Query functions return some other type of data.
-
+================================================================================
+# Structs (Each module may define only one struct, 
+  which can then be used to create new instances and pattern-match on them):
+iex> one_half = %Fraction{a: 1, b: 2}
+iex> one_half.a
+iex> one_half.b
+iex> %Fraction{a: a, b: b} = one_half
+iex> %Fraction{} = one_half
+- A struct pattern can’t match a plain map:
+iex> %Fraction{} = %{a: 1, b: 2}
+- A plain map pattern can match a struct:
+iex> %{a: a, b: b} = %Fraction{a: 1, b: 2}
