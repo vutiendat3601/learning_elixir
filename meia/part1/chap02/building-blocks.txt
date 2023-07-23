@@ -28,7 +28,6 @@ iex> 3.14
 iex> 1.0e-2
   Standard arithmetic operators are supported:
 iex> 1 + 2 * 3
-
 iex> div(5,2)
 iex> rem(5,2)
 iex> 1_000_000
@@ -73,6 +72,10 @@ iex> dat_vu["name"]
 iex> dat_vu = %{name: "Vu Tien Dat", phone: "0898993601", email: "vutien.dat.3601@gmail.com"}
 iex> dat_vu = %{dat_vu | :phone => "0388093601"}
 iex> Map.put(dat_vu, :birthday, "2001-06-03")
+iex> Enum.each(dat_vu, fn attr -> attr_name = elem(attr, 0)
+     attr_val = elem(attr, 1)
+     IO.puts "#{attr_name} => #{attr_val}"
+     end)
 ================================================================================
 - Strings (binary string):
 iex> "This is a string"
@@ -99,7 +102,7 @@ iex> square.(5)
 iex> print_element = fn(x) -> IO.puts(x) end
 iex> Enum.each([1, 2, 3], print_element)
 iex> Enum.each([1, 2, 3], &IO.puts/1)
-iex> lambda = &(&0 * &1 + &2)
+iex> lambda = &(&1 * &2 + &3)
 iex> lambda.(2, 3, 4)
 - Closure
 iex> outside_var = 5
@@ -108,4 +111,23 @@ iex> lambda.()
 iex> outside_var = 6
 iex> lambda.()
 ================================================================================
-
+- Range:
+iex> range = 1..100
+iex> 2 in range
+iex> 101 in range
+iex> Enum.each(1..100, &IO.puts/1)
+- Keyword list:
+iex> days = [{:monday, 1}, {:tuesday, 2}, {:wednesday, 3}]
+iex> days = [monday: 1, tuesday: 2, wednesday: 3]
+iex> Keyword.get(days, :monday)
+iex> days[:tuesday]
+iex> Float.to_string(1/3, [decimals: 2])
+- MapSet:
+iex> set = MapSet.new([1,2,3,4,5])
+iex> MapSet.member?(set, 1)
+iex> MapSet.member?(set, 100)
+iex> set = MapSet.put(set, 100)
+iex> Enum.each(set, &IO.puts/1)
+================================================================================
+- Dynamically calling functions:
+iex> apply(IO, :puts, ["Dynamically function call."])

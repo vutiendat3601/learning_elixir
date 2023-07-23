@@ -1,0 +1,36 @@
+# Pattern matching:
+- Matching tuples:
+iex> {name, age} = {"Dat Vu", 22}
+iex> name
+iex> age
+iex> {date, time} = :calendar.local_time
+iex> {name, age} = "can't match"
+iex> dat_vu = {:person, "Dat Vu", 22}
+iex> {:person, "Dat Vu", 22} = dat_vu
+- Variables in patterns:
+iex> {_, time} = :calendar.local_time
+iex> time
+iex> {_, {hour, _, _}} = :calendar.local_time
+iex> hour
+iex> {amount, amount, amount} = {127, 127, 127}
+- Matches to the "content" of the variable (pin operator ^):
+iex> expected_name = "Dat Vu"
+iex> {^expected_name, _} = {"Dat Vu", 22}
+- Matching lists:
+iex> [1, second, third] = [1, 2, 3]
+iex> [first, first, first] = [1, 1, 1]
+iex> [first, second, _] = [1, 2, 3]
+iex> [^first, second, _] = [1, 2, 3]
+iex> [min | _] = Enum.sort([3, 2, 1])
+- Matching maps (the left-side pattern doesn’t need to contain all the keys from the right-side term):
+iex> %{name: name, age: age} = %{name: "Dat Vu", age: 22}
+================================================================================
+- if, unless:
+iex> if 5 > 3, do: :one
+iex> if 5 < 3, do: :one
+iex> if 5 < 3, do: :one, else: :two
+iex> unless 3 > 5, do: "3 smaller_than 5"
+================================================================================
+- Comprehensions:
+iex> for x <- [1, 2, 3], y <- [1, 2, 3], do: {x, y, x*y}
+iex> for x <- 1..9, y <- 1..9, do: {x, y, x*y}

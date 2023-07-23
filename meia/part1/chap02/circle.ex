@@ -11,6 +11,6 @@ defmodule Circle do
   @doc "Computes the circumference of a circle"
   # @spec is type specification allows to provide type information for functions
   @spec circumference(number) :: number
-  def circumference(r), do: 2*r*@pi
+  def circumference(r), do: 2 * r * @pi
 
 end

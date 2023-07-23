@@ -12,6 +12,12 @@ defmodule Calculator do
 
   def cal_area(a, b), do: Geo.rectangle_area(a, b) # invoke function use alias name
 
+  def optional_args_func(arg1, arg2, opts \\ []) do
+    IO.puts arg1
+    IO.puts arg2
+
+  end
+
   # use defp to define private function
   defp private_func do
     # IO.puts("Private function") // if don't have import
