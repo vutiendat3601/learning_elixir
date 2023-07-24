@@ -25,12 +25,12 @@ iex> [min | _] = Enum.sort([3, 2, 1])
 - Matching maps (the left-side pattern doesn’t need to contain all the keys from the right-side term):
 iex> %{name: name, age: age} = %{name: "Dat Vu", age: 22}
 ================================================================================
-- if, unless:
+# if, unless:
 iex> if 5 > 3, do: :one
 iex> if 5 < 3, do: :one
 iex> if 5 < 3, do: :one, else: :two
 iex> unless 3 > 5, do: "3 smaller_than 5"
 ================================================================================
-- Comprehensions:
+# Comprehensions:
 iex> for x <- [1, 2, 3], y <- [1, 2, 3], do: {x, y, x*y}
 iex> for x <- 1..9, y <- 1..9, do: {x, y, x*y}

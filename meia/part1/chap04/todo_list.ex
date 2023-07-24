@@ -37,7 +37,6 @@ defmodule TodoList do
 end
 
 defmodule TodoList.CsvImporter do
-
   def import(path) do
     File.stream!(path)
     |> Stream.map(&String.split(String.replace(&1, "\n", ""), ","))
@@ -56,4 +55,19 @@ defmodule TodoList.CsvImporter do
     |> Enum.to_list()
     |> TodoList.new()
   end
+end
+
+defimpl String.Chars, for: TodoList do
+  def to_string(%{entries: entries}) do
+    Enum.map(entries, fn {_, v} -> "#{Map.get(v, :title)}" end)
+  end
+end
+
+defimpl Collectable, for: TodoList do
+  def into(original), do: {original, &into_callback/2}
+
+  defp into_callback(todo_list, {:cont, entry}), do: TodoList.add_entry(todo_list, entry)
+
+  defp into_callback(todo_list, :done), do: todo_list
+  defp into_callback(todo_list, :halt), do: :ok
 end
